@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://f31ty1d2wit4"]
+
+[ext_resource type="Script" path="res://Scenes/opening_credits.gd" id="1_l6pne"]
+[ext_resource type="Texture2D" uid="uid://cw6mclcan8cl6" path="res://Assets/Images/mouse.png" id="2_dqy18"]
+
+[node name="OpeningCredits" type="CanvasLayer" node_paths=PackedStringArray("canvas_modulate")]
+script = ExtResource("1_l6pne")
+canvas_modulate = NodePath("CanvasModulate")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dqy18")

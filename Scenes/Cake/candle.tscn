@@ -17,14 +17,14 @@ position = Vector2(2.08165e-12, -40)
 texture = ExtResource("1_mkvkh")
 
 [node name="Flame" type="CPUParticles2D" parent="."]
-position = Vector2(0, -88)
-amount = 16
-lifetime = 0.6
+position = Vector2(2.08165e-12, -100)
+amount = 14
+lifetime = 0.8
 emission_shape = 1
-emission_sphere_radius = 8.0
-gravity = Vector2(2.08165e-12, -98)
-scale_amount_min = 10.0
-scale_amount_max = 10.0
+emission_sphere_radius = 16.0
+gravity = Vector2(2.08165e-12, -100)
+scale_amount_min = 30.0
+scale_amount_max = 30.0
 color_ramp = SubResource("Gradient_34hi5")
 
 [node name="BlowDetector" type="Area2D" parent="."]

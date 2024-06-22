@@ -1,16 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfplb42segbeb"]
+[gd_scene load_steps=8 format=3 uid="uid://bfplb42segbeb"]
 
 [ext_resource type="Texture2D" uid="uid://dsey2m57jov2k" path="res://Assets/Images/face.png" id="1_xf0ku"]
 [ext_resource type="Script" path="res://Scenes/Face/face.gd" id="2_hgcg3"]
+[ext_resource type="Texture2D" uid="uid://cudtj6qdof1s" path="res://Assets/Images/spit.png" id="3_4qgkh"]
+[ext_resource type="Script" path="res://Scenes/Face/InputFaker.gd" id="4_1h14h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ngksh"]
-size = Vector2(34, 103)
+size = Vector2(34, 156)
 
 [sub_resource type="Gradient" id="Gradient_xeifr"]
 colors = PackedColorArray(0.25332, 0.473895, 1, 1, 1, 1, 1, 1)
 
-[node name="Face" type="Node2D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k6or2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+direction = Vector3(2.08165e-12, 1, 2.08165e-12)
+initial_velocity_min = 33.71
+initial_velocity_max = 50.56
+gravity = Vector3(0, 98, 0)
+collision_mode = 1
+collision_friction = 0.4
+collision_bounce = 0.0
+
+[node name="Face" type="Node2D" node_paths=PackedStringArray("blow_zone", "spit_emitter")]
 script = ExtResource("2_hgcg3")
+blow_zone = NodePath("BlowZone")
+spit_emitter = NodePath("Spit")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-116, 0)
@@ -23,12 +39,13 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlowZone"]
-position = Vector2(0, -41.5)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_ngksh")
 debug_color = Color(0, 0.6, 0.701961, 0.686275)
 
-[node name="Spit" type="CPUParticles2D" parent="."]
+[node name="Wind" type="CPUParticles2D" parent="."]
 position = Vector2(0, -92)
+emitting = false
 emission_shape = 3
 emission_rect_extents = Vector2(8, 1)
 direction = Vector2(2.08165e-12, 1)
@@ -44,3 +61,15 @@ angle_max = 30.0
 scale_amount_min = 8.0
 scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_xeifr")
+
+[node name="Spit" type="GPUParticles2D" parent="."]
+position = Vector2(2.08165e-12, -92)
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_k6or2")
+texture = ExtResource("3_4qgkh")
+lifetime = 3.0
+
+[node name="InputFaker" type="Node" parent="."]
+script = ExtResource("4_1h14h")
+
+[connection signal="fake_breath_power" from="InputFaker" to="." method="_on_mic_handler_blow_power"]

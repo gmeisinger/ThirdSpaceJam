@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmnvmw4wgqp5k"]
+[gd_scene load_steps=3 format=3 uid="uid://bxy15dislkum4"]
 
 [ext_resource type="Script" path="res://Scenes/Audio/mic_handler.gd" id="1_ciwdf"]
 [ext_resource type="Script" path="res://Scenes/Audio/wind_generator.gd" id="2_g3hik"]
