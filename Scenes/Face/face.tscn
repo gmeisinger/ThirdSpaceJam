@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfplb42segbeb"]
+[gd_scene load_steps=5 format=3 uid="uid://bfplb42segbeb"]
 
 [ext_resource type="Texture2D" uid="uid://dsey2m57jov2k" path="res://Assets/Images/face.png" id="1_xf0ku"]
 [ext_resource type="Script" path="res://Scenes/Face/face.gd" id="2_hgcg3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ngksh"]
-size = Vector2(59, 103)
+size = Vector2(34, 103)
+
+[sub_resource type="Gradient" id="Gradient_xeifr"]
+colors = PackedColorArray(0.25332, 0.473895, 1, 1, 1, 1, 1, 1)
 
 [node name="Face" type="Node2D"]
 script = ExtResource("2_hgcg3")
@@ -20,5 +23,24 @@ collision_mask = 4
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlowZone"]
-position = Vector2(-3.5, -41.5)
+position = Vector2(0, -41.5)
 shape = SubResource("RectangleShape2D_ngksh")
+debug_color = Color(0, 0.6, 0.701961, 0.686275)
+
+[node name="Spit" type="CPUParticles2D" parent="."]
+position = Vector2(0, -92)
+emission_shape = 3
+emission_rect_extents = Vector2(8, 1)
+direction = Vector2(2.08165e-12, 1)
+gravity = Vector2(2.08165e-12, 500)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+angular_velocity_min = 60.0
+angular_velocity_max = 120.0
+radial_accel_min = -100.0
+radial_accel_max = 100.0
+angle_min = -30.0
+angle_max = 30.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_xeifr")

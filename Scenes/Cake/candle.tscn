@@ -9,23 +9,22 @@ colors = PackedColorArray(0.777853, 0.186094, 0.0594601, 1, 0.849136, 0.321703, 
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbyq3"]
 
-[node name="Candle" type="Node2D" node_paths=PackedStringArray("flame")]
+[node name="Candle" type="Node2D"]
 script = ExtResource("1_y4ona")
-flame = NodePath("Flame")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -40)
 texture = ExtResource("1_mkvkh")
 
 [node name="Flame" type="CPUParticles2D" parent="."]
-position = Vector2(0, -79)
+position = Vector2(0, -88)
 amount = 16
 lifetime = 0.6
 emission_shape = 1
-emission_sphere_radius = 6.0
+emission_sphere_radius = 8.0
 gravity = Vector2(2.08165e-12, -98)
-scale_amount_min = 4.0
-scale_amount_max = 4.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_34hi5")
 
 [node name="BlowDetector" type="Area2D" parent="."]
