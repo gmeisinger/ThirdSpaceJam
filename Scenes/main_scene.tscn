@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvg2fohaju7xd"]
+[gd_scene load_steps=6 format=3 uid="uid://cvg2fohaju7xd"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_36osn"]
 [ext_resource type="PackedScene" uid="uid://d3uvj7pvlu8l7" path="res://Scenes/Cake/cake.tscn" id="1_h60mr"]
 [ext_resource type="PackedScene" uid="uid://bfplb42segbeb" path="res://Scenes/Face/face.tscn" id="2_4c673"]
 [ext_resource type="PackedScene" uid="uid://dmnvmw4wgqp5k" path="res://Scenes/Audio/audio.tscn" id="2_ouyca"]
+[ext_resource type="Script" path="res://Scenes/Audio/spit_player.gd" id="3_wtppx"]
 
 [node name="Scene" type="Node2D" node_paths=PackedStringArray("cake", "camera", "face")]
 script = ExtResource("1_36osn")
@@ -11,16 +12,22 @@ cake = NodePath("Cake")
 camera = NodePath("Camera")
 face = NodePath("Face")
 
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(320, 2.08165e-12)
+
 [node name="Audio" parent="." instance=ExtResource("2_ouyca")]
 position = Vector2(320, 2.08165e-12)
+
+[node name="Spit Player" type="Node" parent="Audio"]
+script = ExtResource("3_wtppx")
 
 [node name="Cake" parent="." instance=ExtResource("1_h60mr")]
 position = Vector2(2.08165e-12, 64)
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(320, 2.08165e-12)
-
 [node name="Face" parent="." instance=ExtResource("2_4c673")]
+
+[connection signal="blow_power" from="Audio/Mic Handler" to="Audio/Spit Player" method="_on_mic_handler_blow_power"]
+[connection signal="spitting" from="Audio/Spit Player" to="Audio/Wind Generator" method="_on_spit_player_spitting"]
 
 [editable path="Audio"]
 [editable path="Cake"]

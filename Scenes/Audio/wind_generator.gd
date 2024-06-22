@@ -11,10 +11,12 @@ var wind_noise_bus_idx: int
 var low_pass_filter: AudioEffectLowPassFilter
 var amplify_effect: AudioEffectAmplify
 
-var sample_scale: float
+# signals
+var _blow_power: float
+var _is_spitting: bool
 
 func _on_mic_handler_blow_power(power):
-	sample_scale = power
+	_blow_power = power
 
 func _setup_stream_player():
 	wind_noise_bus_idx = AudioServer.get_bus_index(WIND_NOISE_BUS)
@@ -33,11 +35,15 @@ func _ready():
 	call_deferred("_setup_stream_player")
 
 func _process(_delta):
-	var volume_db = linear_to_db(sample_scale)
+	var volume_db = linear_to_db(0 if _is_spitting else _blow_power)
 	#low_pass_filter.cutoff_hz = 2500 * sample_scale
 	amplify_effect.volume_db = volume_db
 	
 	# Load new samples into audio generator
 	for i in range(playback.get_frames_available()):
-		var sample = randf()
+		var sample = randf() # white noise
 		playback.push_frame(Vector2(sample, sample))
+
+
+func _on_spit_player_spitting(is_spitting):
+	_is_spitting = is_spitting

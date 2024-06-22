@@ -2,3 +2,8 @@ res://default_bus_layout.tres
 res://game.tscn
 res://Scenes/Audio/audio.tscn
 res://Scenes/main_scene.tscn
+res://Scenes/Audio/spit_player.gd
+res://Scenes/Audio/AudioImport.gd
+res://Scenes/Audio/AudioLoader.gd
+res://Scenes/Audio/wind_generator.gd
+res://Scenes/Audio/mic_handler.gd

@@ -1,12 +1,9 @@
 extends Node
 
-#@export var node_we_needed : Camera2D
-
-const BUFFER_SIZE: int = 1
-
 var mic_stream: AudioStreamPlayer
 var input_bus_idx: int
 
+# signals
 signal blow_power(power: float)
 
 func _create_mic_stream():
@@ -20,7 +17,6 @@ func _create_mic_stream():
 func _ready():
 	input_bus_idx = AudioServer.get_bus_index("Input")
 	call_deferred("_create_mic_stream")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
