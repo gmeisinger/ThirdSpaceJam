@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://beu0trgd4uq3r"]
+
+[ext_resource type="Script" path="res://Scenes/opening_credits.gd" id="1_3rgt7"]
+[ext_resource type="PackedScene" uid="uid://cvg2fohaju7xd" path="res://Scenes/main_scene.tscn" id="2_mj2fk"]
+[ext_resource type="Texture2D" uid="uid://bp8g5wsfxjrtf" path="res://Assets/Images/title.png" id="3_386l3"]
+
+[node name="Title" type="CanvasLayer" node_paths=PackedStringArray("canvas_modulate")]
+script = ExtResource("1_3rgt7")
+canvas_modulate = NodePath("CanvasModulate")
+next_scene = ExtResource("2_mj2fk")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_386l3")

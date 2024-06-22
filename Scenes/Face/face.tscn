@@ -30,7 +30,7 @@ blow_zone = NodePath("BlowZone")
 spit_emitter = NodePath("Spit")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-116, 0)
+position = Vector2(-323, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("1_xf0ku")
 
@@ -65,7 +65,9 @@ color_ramp = SubResource("Gradient_xeifr")
 
 [node name="Spit" type="GPUParticles2D" parent="."]
 position = Vector2(2.08165e-12, -92)
-amount = 24
+amount = 48
 process_material = SubResource("ParticleProcessMaterial_k6or2")
 texture = ExtResource("3_4qgkh")
 lifetime = 3.0
+preprocess = 1.0
+speed_scale = 1.5

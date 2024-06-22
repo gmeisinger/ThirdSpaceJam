@@ -22,6 +22,7 @@ const BREATH_LOSS_RATE = 50
 const BREATH_GAIN_RATE = 25
 
 func move_to(new_x : int, time : float):
+	tween = get_tree().create_tween()
 	tween.tween_property(self, "position:x", new_x, time)
 
 func blow(_blow : bool):
@@ -43,7 +44,7 @@ func _on_mic_handler_blow_power(power):
 			spit(true)
 		else:
 			spit(false)
-	elif power < blow_threshold:
+	else:
 		blow(false)
 		spit(false)
 

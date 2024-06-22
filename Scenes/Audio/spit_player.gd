@@ -47,7 +47,6 @@ func _on_stream_player_finished():
 
 func _on_face_is_spitting(_spitting):
 	if do_spit != _spitting:
-		var wav_size = stream_player.stream.data.size()
 		stream_player.stream.loop_mode = \
 			AudioStreamWAV.LOOP_FORWARD if do_spit \
 			else AudioStreamWAV.LOOP_DISABLED

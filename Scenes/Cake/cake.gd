@@ -18,7 +18,9 @@ func _ready():
 		candle.position.x = posx
 		candle_parent.add_child(candle)
 
-func get_next_candle_x():
+
+
+func get_random_candle_x():
 	var next : Candle = candle_parent.get_child(randi_range(0, num_candles - 1))
 	var next_x = next.global_position.x
 	return next_x
