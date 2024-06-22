@@ -31,13 +31,13 @@ func light():
 
 func _on_tween_finished():
 	if flame.scale_amount_min == 0:
-		print("candle blown out!")
+		#print("candle blown out!")
 		lit = false
 		flame.emitting = false
 		went_out.emit(self)
 
 func _on_blow_detector_area_entered(area):
-	print("getting blown!")
+	#print("getting blown!")
 	if in_grace_period:
 		in_grace_period = false
 	tween = get_tree().create_tween()
@@ -47,13 +47,6 @@ func _on_blow_detector_area_entered(area):
 
 func _on_blow_detector_area_exited(area):
 	in_grace_period = true
-	#print("not getting blown!")
-	#tween.stop()
-	#if lit:
-		#tween = get_tree().create_tween()
-		#tween.connect("finished", _on_tween_finished)
-		#tween.tween_property(flame, "scale_amount_min", starting_flame_scale, _regen_time)
-		#tween.parallel().tween_property(flame, "scale", Vector2.ONE, _fade_time)
 
 func _process(delta):
 	if in_grace_period:
@@ -61,7 +54,7 @@ func _process(delta):
 		if grace_period_timer > GRACE_PERIOD:
 			grace_period_timer = 0.0
 			in_grace_period = false
-			print("not getting blown!")
+			#print("not getting blown!")
 			tween.stop()
 			if lit:
 				tween = get_tree().create_tween()
