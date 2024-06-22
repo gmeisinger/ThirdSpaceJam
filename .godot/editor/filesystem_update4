@@ -1,4 +1,13 @@
-res://default_bus_layout.tres
-res://game.tscn
-res://Scenes/Audio/audio.tscn
+res://Scenes/Audio/default_bus_layout.tres
+res://Scenes/Face/face.tscn
 res://Scenes/main_scene.tscn
+res://Scenes/Cake/cake.tscn
+res://Scenes/Cake/candle.tscn
+res://Scenes/Face/face.gd
+res://Scenes/UI/breath_meter.tscn
+res://Scenes/UI/breath_meter.gd
+res://Scenes/main_scene.gd
+res://Scenes/Face/InputFaker.gd
+res://Scenes/Cake/candle.gd
+res://Scenes/opening_credits.tscn
+res://Scenes/opening_credits.gd

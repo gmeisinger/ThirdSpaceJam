@@ -1,4 +1,13 @@
+TextureRect
+CanvasModulate
+CanvasLayer
 Node
+Label
+ProgressBar
+LightOccluder2D
+GPUParticles2D
+CollisionPolygon2D
+StaticBody2D
 AudioStreamPlayer
 Camera2D
 Node2D
