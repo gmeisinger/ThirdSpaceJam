@@ -4,7 +4,7 @@ extends Node2D
 @export var camera : Camera2D
 @export var face : Face
 
-const NEW_CANDLE_DELAY = 2.5
+const NEW_CANDLE_DELAY = 3
 var new_candle_timer = 0
 
 func _ready():

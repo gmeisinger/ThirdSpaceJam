@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bfplb42segbeb"]
 
-[ext_resource type="Texture2D" uid="uid://dsey2m57jov2k" path="res://Assets/Images/face.png" id="1_xf0ku"]
+[ext_resource type="Texture2D" uid="uid://kv1yvamu5vcl" path="res://Assets/Images/face-sheet.png" id="2_c86sf"]
 [ext_resource type="Script" path="res://Scenes/Face/face.gd" id="2_hgcg3"]
 [ext_resource type="Texture2D" uid="uid://cudtj6qdof1s" path="res://Assets/Images/spit.png" id="3_4qgkh"]
 
@@ -32,7 +32,8 @@ spit_emitter = NodePath("Spit")
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-323, 0)
 scale = Vector2(5, 5)
-texture = ExtResource("1_xf0ku")
+texture = ExtResource("2_c86sf")
+hframes = 2
 
 [node name="BlowZone" type="Area2D" parent="."]
 collision_layer = 2
@@ -69,5 +70,5 @@ amount = 48
 process_material = SubResource("ParticleProcessMaterial_k6or2")
 texture = ExtResource("3_4qgkh")
 lifetime = 3.0
-preprocess = 1.0
+preprocess = 0.2
 speed_scale = 1.5

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvg2fohaju7xd"]
+[gd_scene load_steps=8 format=3 uid="uid://cvg2fohaju7xd"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_36osn"]
 [ext_resource type="PackedScene" uid="uid://d3uvj7pvlu8l7" path="res://Scenes/Cake/cake.tscn" id="1_h60mr"]
 [ext_resource type="PackedScene" uid="uid://bfplb42segbeb" path="res://Scenes/Face/face.tscn" id="2_4c673"]
 [ext_resource type="PackedScene" uid="uid://bxy15dislkum4" path="res://Scenes/Audio/audio.tscn" id="2_ouyca"]
+[ext_resource type="PackedScene" uid="uid://duwx0i7o8iw5f" path="res://Scenes/UI/spit_meter.tscn" id="3_4gitc"]
 [ext_resource type="Script" path="res://Scenes/Audio/spit_player.gd" id="3_wtppx"]
 [ext_resource type="PackedScene" uid="uid://odrkjdacyl5o" path="res://Scenes/UI/breath_meter.tscn" id="4_2vueb"]
 
@@ -16,6 +17,8 @@ face = NodePath("Face")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="BreathMeter" parent="UI" instance=ExtResource("4_2vueb")]
+
+[node name="SpitMeter" parent="UI" instance=ExtResource("3_4gitc")]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(320, 2.08165e-12)
@@ -35,6 +38,7 @@ position = Vector2(-480, 2.08165e-12)
 [connection signal="blow_power" from="Audio/Mic Handler" to="Face" method="_on_mic_handler_blow_power"]
 [connection signal="spitting" from="Audio/Spit Player" to="Audio/Wind Generator" method="_on_spit_player_spitting"]
 [connection signal="breath_left" from="Face" to="UI/BreathMeter" method="_on_breath_changed"]
+[connection signal="is_spitting" from="Face" to="UI/SpitMeter" method="_on_face_is_spitting"]
 [connection signal="is_spitting" from="Face" to="Audio/Spit Player" method="_on_face_is_spitting"]
 
 [editable path="Audio"]

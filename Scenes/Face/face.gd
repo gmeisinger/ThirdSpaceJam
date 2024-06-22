@@ -6,6 +6,7 @@ extends Node2D
 
 @onready var start_x = position.x
 @onready var tween = create_tween()
+@onready var sprite = get_node("Sprite")
 
 signal is_spitting(_spitting : bool)
 signal breath_left(_breath : float)
@@ -35,12 +36,13 @@ func spit(_spit : bool):
 	if spitting != _spit:
 		spitting = _spit
 		is_spitting.emit(spitting)
+		sprite.frame = 1 if spitting else 0
 
 func _on_mic_handler_blow_power(power):
 	#print(power)
 	if power > blow_threshold and breath_amount > MIN_BREATH:
 		blow(true)
-		if power > .75:
+		if power > .9:
 			spit(true)
 		else:
 			spit(false)
