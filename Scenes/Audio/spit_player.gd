@@ -1,7 +1,6 @@
 extends Node
 
 const WAV_FILES_COUNT: int = 17
-const DO_SPIT_THRESHOLD: float = 0.5
 
 const SPITS_BUS: String = "Spits"
 var spits_bux_idx: int
@@ -45,15 +44,12 @@ func _on_stream_player_finished():
 	if not do_spit:
 		stream_player.stop()
 
-func _on_mic_handler_blow_power(power):
-	if do_spit != (power >= DO_SPIT_THRESHOLD):
+
+func _on_face_is_spitting(_spitting):
+	if do_spit != _spitting:
 		var wav_size = stream_player.stream.data.size()
 		stream_player.stream.loop_mode = \
 			AudioStreamWAV.LOOP_FORWARD if do_spit \
 			else AudioStreamWAV.LOOP_DISABLED
 		
 		do_spit = not do_spit
-
-
-func _on_face_is_spitting(_spitting):
-	do_spit = _spitting
