@@ -23,6 +23,11 @@ driver/enable_input=true
 
 window/stretch/mode="viewport"
 
+[layer_names]
+
+2d_physics/layer_2="blow"
+2d_physics/layer_3="fire"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

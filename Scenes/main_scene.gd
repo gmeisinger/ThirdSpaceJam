@@ -6,4 +6,4 @@ extends Node2D
 
 func _ready():
 	face.position.x = cake.candle_parent.position.x
-	face.move_to(cake.get_next_candle_x(), 3.0)
+	face.move_to(cake.get_next_candle_x(), 1.0)

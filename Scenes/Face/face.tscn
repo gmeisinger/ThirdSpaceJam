@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfplb42segbeb"]
+[gd_scene load_steps=4 format=3 uid="uid://bfplb42segbeb"]
 
 [ext_resource type="Texture2D" uid="uid://dsey2m57jov2k" path="res://Assets/Images/face.png" id="1_xf0ku"]
 [ext_resource type="Script" path="res://Scenes/Face/face.gd" id="2_hgcg3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngksh"]
+size = Vector2(59, 103)
 
 [node name="Face" type="Node2D"]
 script = ExtResource("2_hgcg3")
@@ -10,3 +13,12 @@ script = ExtResource("2_hgcg3")
 position = Vector2(-116, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("1_xf0ku")
+
+[node name="BlowZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlowZone"]
+position = Vector2(-3.5, -41.5)
+shape = SubResource("RectangleShape2D_ngksh")

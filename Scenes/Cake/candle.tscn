@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvjgff65yg078"]
+[gd_scene load_steps=5 format=3 uid="uid://cvjgff65yg078"]
 
 [ext_resource type="Texture2D" uid="uid://teuxanclhk07" path="res://Assets/Images/candle.png" id="1_mkvkh"]
 [ext_resource type="Script" path="res://Scenes/Cake/candle.gd" id="1_y4ona"]
@@ -7,20 +7,35 @@
 offsets = PackedFloat32Array(0, 0.476667, 1)
 colors = PackedColorArray(0.777853, 0.186094, 0.0594601, 1, 0.849136, 0.321703, 0.0611829, 1, 1, 1, 1, 1)
 
-[node name="Candle" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbyq3"]
+
+[node name="Candle" type="Node2D" node_paths=PackedStringArray("flame")]
 script = ExtResource("1_y4ona")
+flame = NodePath("Flame")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -40)
 texture = ExtResource("1_mkvkh")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="Flame" type="CPUParticles2D" parent="."]
 position = Vector2(0, -79)
 amount = 16
 lifetime = 0.6
 emission_shape = 1
 emission_sphere_radius = 6.0
 gravity = Vector2(2.08165e-12, -98)
-scale_amount_min = 3.0
-scale_amount_max = 3.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_34hi5")
+
+[node name="BlowDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlowDetector"]
+position = Vector2(0, -85)
+shape = SubResource("RectangleShape2D_vbyq3")
+
+[connection signal="area_entered" from="BlowDetector" to="." method="_on_blow_detector_area_entered"]
+[connection signal="area_exited" from="BlowDetector" to="." method="_on_blow_detector_area_exited"]
