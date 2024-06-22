@@ -36,10 +36,9 @@ func spit(_spit : bool):
 		is_spitting.emit(spitting)
 
 func _on_mic_handler_blow_power(power):
-	print(power)
 	if power > blow_threshold and breath_amount > MIN_BREATH:
 		blow(true)
-		if power == 1:
+		if power > 0.75:
 			spit(true)
 		else:
 			spit(false)
