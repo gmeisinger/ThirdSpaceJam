@@ -30,13 +30,13 @@ func blow(_blow : bool):
 	if blowing != _blow:
 		blowing = _blow
 		blow_zone.monitorable = blowing
+		sprite.frame = 1 if blowing else 0
 
 func spit(_spit : bool):
 	spit_emitter.emitting = _spit
 	if spitting != _spit:
 		spitting = _spit
 		is_spitting.emit(spitting)
-		sprite.frame = 1 if spitting else 0
 
 func _on_mic_handler_blow_power(power):
 	#print(power)

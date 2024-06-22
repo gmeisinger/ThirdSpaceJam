@@ -3,6 +3,7 @@ extends Node2D
 @export var cake : Cake
 @export var camera : Camera2D
 @export var face : Face
+@export var crew : Sprite2D
 
 const NEW_CANDLE_DELAY = 3
 var new_candle_timer = 0
@@ -15,3 +16,8 @@ func _process(delta):
 	if new_candle_timer >= NEW_CANDLE_DELAY:
 		new_candle_timer = 0
 		face.move_to(cake.get_random_candle_x(), 1.5)
+
+
+func _on_face_is_spitting(_spitting):
+	if _spitting:
+		crew.frame = 1

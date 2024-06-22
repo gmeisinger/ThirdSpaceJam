@@ -1,6 +1,8 @@
 class_name Cake
 extends Node2D
 
+signal all_candles_out()
+
 @export var num_candles : int = 8
 @export var candle_parent : Node2D
 
@@ -33,6 +35,8 @@ func _ready():
 func _on_candle_went_out(candle : Candle):
 	lit.erase(candle)
 	unlit.append(candle)
+	if len(lit) == 0:
+		all_candles_out.emit()
 
 func _on_candle_relit(candle):
 	unlit.erase(candle)
