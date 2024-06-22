@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvg2fohaju7xd"]
+[gd_scene load_steps=5 format=3 uid="uid://cvg2fohaju7xd"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_36osn"]
 [ext_resource type="PackedScene" uid="uid://d3uvj7pvlu8l7" path="res://Scenes/Cake/cake.tscn" id="1_h60mr"]
 [ext_resource type="PackedScene" uid="uid://bfplb42segbeb" path="res://Scenes/Face/face.tscn" id="2_4c673"]
+[ext_resource type="PackedScene" uid="uid://dmnvmw4wgqp5k" path="res://Scenes/Audio/audio.tscn" id="2_ouyca"]
 
 [node name="Scene" type="Node2D" node_paths=PackedStringArray("cake", "camera", "face")]
 script = ExtResource("1_36osn")
 cake = NodePath("Cake")
 camera = NodePath("Camera")
 face = NodePath("Face")
+
+[node name="Audio" parent="." instance=ExtResource("2_ouyca")]
+position = Vector2(320, 2.08165e-12)
 
 [node name="Cake" parent="." instance=ExtResource("1_h60mr")]
 position = Vector2(2.08165e-12, 64)
@@ -18,4 +22,5 @@ position = Vector2(320, 2.08165e-12)
 
 [node name="Face" parent="." instance=ExtResource("2_4c673")]
 
+[editable path="Audio"]
 [editable path="Cake"]

@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://bxy15dislkum4"]
+[gd_scene load_steps=3 format=3 uid="uid://dmnvmw4wgqp5k"]
 
-[node name="Audio" type="Node"]
+[ext_resource type="Script" path="res://Scenes/Audio/mic_handler.gd" id="1_ciwdf"]
+[ext_resource type="Script" path="res://Scenes/Audio/wind_generator.gd" id="2_g3hik"]
+
+[node name="Audio" type="Node2D"]
+
+[node name="Mic Handler" type="Node" parent="."]
+script = ExtResource("1_ciwdf")
+
+[node name="Wind Generator" type="Node" parent="."]
+script = ExtResource("2_g3hik")
+
+[connection signal="blow_power" from="Mic Handler" to="Wind Generator" method="_on_mic_handler_blow_power"]
