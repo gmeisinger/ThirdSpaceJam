@@ -1,0 +1,7 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1719029352
+Camera2D.gd::GDScript::-1::1719014291::0::1::::<>Camera2D<>::
+default_bus_layout.tres::AudioBusLayout::2963985379158972232::1719028216::0::1::::<><>::
+game.tscn::PackedScene::8029662773234699170::1719029375::0::1::::<><>::res://Camera2D.gd<>res://Mic Handler.gd
+icon.svg::CompressedTexture2D::2754644317733079098::1719012783::1719012824::1::::<><>::
+Mic Handler.gd::GDScript::-1::1719029278::0::1::::<>Node<>::
