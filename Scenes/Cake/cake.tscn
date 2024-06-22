@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3uvj7pvlu8l7"]
+
+[ext_resource type="Texture2D" uid="uid://d2guvmn0oygcb" path="res://Assets/Images/cake.png" id="1_q5bkp"]
+[ext_resource type="Script" path="res://Scenes/Cake/cake.gd" id="1_qwqgl"]
+
+[node name="Cake" type="Node2D" node_paths=PackedStringArray("candle_parent")]
+script = ExtResource("1_qwqgl")
+candle_parent = NodePath("Candles")
+
+[node name="Candles" type="Node2D" parent="."]
+position = Vector2(60, 2.08165e-12)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(320, 2.08165e-12)
+texture = ExtResource("1_q5bkp")

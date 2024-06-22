@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvjgff65yg078"]
+
+[ext_resource type="Texture2D" uid="uid://teuxanclhk07" path="res://Assets/Images/candle.png" id="1_mkvkh"]
+[ext_resource type="Script" path="res://Scenes/Cake/candle.gd" id="1_y4ona"]
+
+[sub_resource type="Gradient" id="Gradient_34hi5"]
+offsets = PackedFloat32Array(0, 0.476667, 1)
+colors = PackedColorArray(0.777853, 0.186094, 0.0594601, 1, 0.849136, 0.321703, 0.0611829, 1, 1, 1, 1, 1)
+
+[node name="Candle" type="Node2D"]
+script = ExtResource("1_y4ona")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -40)
+texture = ExtResource("1_mkvkh")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -79)
+amount = 16
+lifetime = 0.6
+emission_shape = 1
+emission_sphere_radius = 6.0
+gravity = Vector2(2.08165e-12, -98)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_34hi5")
