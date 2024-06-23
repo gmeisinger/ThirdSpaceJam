@@ -1,5 +1,7 @@
 extends Control
 
+signal gameover()
+
 @export var meter : ProgressBar
 
 var is_spitting = false
@@ -11,3 +13,5 @@ func _on_face_is_spitting(spitting : bool):
 func _process(delta):
 	if is_spitting:
 		meter.value += delta * SPIT_BUILD_RATE
+	if meter.value >= meter.max_value:
+		gameover.emit()

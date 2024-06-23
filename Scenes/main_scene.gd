@@ -5,6 +5,9 @@ extends Node2D
 @export var face : Face
 @export var crew : Sprite2D
 @export var conductor : Conductor
+@export var canvas_modulate : CanvasModulate
+@export var gameover_scene: PackedScene
+@export var congrats_scene: PackedScene
 
 const NEW_CANDLE_DELAY = 4
 var new_candle_timer = 0
@@ -30,3 +33,11 @@ func _on_face_is_spitting(_spitting):
 func _on_conductor_quarter_will_pass(beat):
 	new_candle_timer += 1
 	print(beat)
+
+func goto_gameover():
+	get_tree().change_scene_to_packed(gameover_scene)
+
+func _on_gameover():
+	var tween = get_tree().create_tween()
+	tween.connect("finished", goto_gameover)
+	tween.tween_property(canvas_modulate, "color", Color(0,0,0), 1.0)
