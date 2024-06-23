@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://hrnk748dp0tq"]
+
+[sub_resource type="Gradient" id="Gradient_34hi5"]
+offsets = PackedFloat32Array(0, 0.476667, 1)
+colors = PackedColorArray(0.777853, 0.186094, 0.0594601, 1, 0.849136, 0.321703, 0.0611829, 1, 1, 1, 1, 1)
+
+[node name="Flame" type="CPUParticles2D"]
+position = Vector2(2.08165e-12, -100)
+amount = 14
+lifetime = 0.8
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(2.08165e-12, -100)
+scale_amount_min = 30.0
+scale_amount_max = 30.0
+color_ramp = SubResource("Gradient_34hi5")

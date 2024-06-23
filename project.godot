@@ -32,6 +32,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=640
 window/stretch/mode="viewport"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [input]
 
 breathe={
@@ -61,5 +65,6 @@ Cancel={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
