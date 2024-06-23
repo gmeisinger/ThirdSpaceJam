@@ -1,5 +1,7 @@
 extends Node
 
+@export var face: Face
+
 const WAV_FILES_COUNT: int = 17
 
 const SPITS_BUS: String = "Spits"
@@ -42,6 +44,11 @@ func _process(_delta):
 		wav.loop_mode = AudioStreamWAV.LOOP_DISABLED
 		stream_player.stream = wav
 		stream_player.play()
+	
+	if stream_player.stream == out_of_breath_stream \
+		and stream_player.playing \
+		and face.blowing:
+		stream_player.stop()
 
 func _on_stream_player_finished():
 	if not do_spit:

@@ -36,8 +36,9 @@ texture = ExtResource("2_xa505")
 [node name="Audio" parent="." instance=ExtResource("2_ouyca")]
 position = Vector2(320, 2.08165e-12)
 
-[node name="Spit Player" type="Node" parent="Audio"]
+[node name="Spit Player" type="Node" parent="Audio" node_paths=PackedStringArray("face")]
 script = ExtResource("3_wtppx")
+face = NodePath("../../Face")
 
 [node name="Cake" parent="." instance=ExtResource("1_h60mr")]
 position = Vector2(2.08165e-12, 128)
