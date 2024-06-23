@@ -7,9 +7,13 @@ var _zoom: Vector2
 
 var interval: float
 
-const BARS_NEEDED_BEFORE_EFFECTS: int = 4 * 4
+const EFFECTS_TOGGLE_PERIOD__BARS: int = 8 * 4
+const BARS_NEEDED_BEFORE_EFFECTS: int = 8 * 4 
 const BEATS_TO_ZOOM: int = 4
 var beat_count: int
+var effects_active: bool
+
+signal camera_effects_started()
 
 func _ready():
 	# Cache starting parameters
@@ -19,22 +23,29 @@ func _ready():
 	interval = 60 / DifficultyManager.bpm
 
 func _on_conductor_quarter_will_pass(beat):
-	if beat > BARS_NEEDED_BEFORE_EFFECTS:
-		if not int(beat)%BEATS_TO_ZOOM:
-			beat_count += 1
-			beat_count = 0
+	if beat >= BARS_NEEDED_BEFORE_EFFECTS:
+		camera_effects_started.emit()
+		
+		if not int(beat_count)%EFFECTS_TOGGLE_PERIOD__BARS:
+			effects_active = not effects_active
 			
-			# Tween Zoom
-			var tween = create_tween()
-			var zoom_amt = randf_range(1.25, 1.675)
-			tween.tween_property(self, "zoom", Vector2(zoom_amt, zoom_amt), interval / 3)
-			#tween.set_trans(Tween.TRANS_ELASTIC)
-			tween.set_ease(Tween.EASE_IN_OUT)
-			tween.chain().tween_property(self, "zoom", _zoom, interval / 3)
+		if (effects_active):
+			if int(beat_count)%BEATS_TO_ZOOM and (randi_range(0, 1) if int(beat_count)%4 else true):
+				# Tween Zoom
+				var tween = create_tween()
+				var zoom_amt = randf_range(1.2, 1.3) if not int(beat_count)%16 else randf_range(1.0, 1.1)
+				tween.tween_property(self, "zoom", Vector2(zoom_amt, zoom_amt), interval / 3)
+				#tween.set_trans(Tween.TRANS_ELASTIC)
+				tween.set_ease(Tween.EASE_IN_OUT)
+				tween.chain().tween_property(self, "zoom", _zoom, interval / 3)
 
-			# Tween Position
-			var pos_tween = create_tween()
-			pos_tween.tween_property(self, "position", Vector2(eye.global_position.x, eye.global_position.y / 2), interval / 3)
-			tween.set_trans(Tween.TRANS_ELASTIC)
-			tween.set_ease(Tween.EASE_IN_OUT)
-			pos_tween.tween_property(self, "position", _position, interval / 2)
+				# Tween Position
+				var pos_tween = create_tween()
+				var destination = (eye.global_position - position).normalized() * randi_range(50, 150)
+				destination.y = destination.y / 2
+				pos_tween.tween_property(self, "position", position + destination, interval / 3)
+				tween.set_trans(Tween.TRANS_ELASTIC)
+				tween.set_ease(Tween.EASE_IN_OUT)
+				pos_tween.tween_property(self, "position", _position, interval / 2)
+				
+		beat_count += 1

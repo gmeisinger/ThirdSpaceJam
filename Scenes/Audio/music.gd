@@ -23,6 +23,8 @@ var amplify_effect: AudioEffectAmplify
 var music_streams: Array[MusicFile]
 var current_music: MusicFile
 
+signal music_started()
+
 const music_files = [
 	{
 		"file": "res://Scenes/Audio/Music/HBD-1.ogg",
@@ -76,6 +78,8 @@ func _setup_stream_player():
 	amplify_effect = AudioServer.get_bus_effect(music_bus_idx, 1)
 	_set_pitch_effect()
 	stream_player.play()
+	music_started.emit()
+	
 
 func _ready():
 	call_deferred("_setup_stream_player")

@@ -82,8 +82,11 @@ script = ExtResource("10_htv3v")
 
 [connection signal="gameover" from="UI/SpitMeter" to="." method="_on_gameover"]
 [connection signal="gameover" from="UI/SpitMeter" to="Audio/Music" method="_on_spit_meter_gameover"]
+[connection signal="camera_effects_started" from="Node2D/Camera" to="Crew" method="_on_camera_camera_effects_started"]
 [connection signal="blow_power" from="Audio/Mic Handler" to="Face" method="_on_mic_handler_blow_power"]
 [connection signal="spitting" from="Audio/Spit Player" to="Audio/Wind Generator" method="_on_spit_player_spitting"]
+[connection signal="music_started" from="Audio/Music" to="Crew" method="_on_music_music_started"]
+[connection signal="music_started" from="Audio/Music" to="Conductor" method="_on_music_music_started"]
 [connection signal="all_candles_out" from="Cake" to="." method="_on_all_candles_out"]
 [connection signal="breath_left" from="Face" to="UI/BreathMeter" method="_on_breath_changed"]
 [connection signal="breath_left" from="Face" to="Audio/Spit Player" method="_on_face_breath_left"]

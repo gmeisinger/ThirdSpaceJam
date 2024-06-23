@@ -8,6 +8,7 @@ extends Node
 
 var master_time = 0.0
 var _prev_time_seconds: float
+var _music_started: bool
 # Other scripts can connect to this signal to know when the beat happens
 # and what beat it was
 signal quarter_passed(beat: int)
@@ -21,6 +22,9 @@ func _is_valid_update(time_seconds: float) -> bool:
 		time_seconds > _prev_time_seconds)
 
 func _process(delta: float) -> void:
+	if not _music_started:
+		return
+	
 	master_time += delta
 	var time_seconds = master_time + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency()
 	# Validation
@@ -40,3 +44,7 @@ func _process(delta: float) -> void:
 		quarter_will_pass.emit(floor(beat))
 	# Keep track of the previous frame's time
 	_prev_time_seconds = time_seconds
+
+
+func _on_music_music_started():
+	_music_started = true
