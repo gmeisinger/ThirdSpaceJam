@@ -1,7 +1,25 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bgm3h5nw0ehwi"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bgm3h5nw0ehwi"]
 
 [ext_resource type="FontFile" uid="uid://bk6nfyhn66l2i" path="res://Assets/Fonts/Cave-Story.ttf" id="1_m7m04"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts6s5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgpir"]
+bg_color = Color(0.417164, 0.688565, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [resource]
 default_font = ExtResource("1_m7m04")
 default_font_size = 64
+ProgressBar/styles/background = SubResource("StyleBoxFlat_ts6s5")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_wgpir")

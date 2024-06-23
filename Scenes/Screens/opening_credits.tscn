@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://f31ty1d2wit4"]
 
-[ext_resource type="Script" path="res://Scenes/opening_credits.gd" id="1_l6pne"]
-[ext_resource type="PackedScene" uid="uid://beu0trgd4uq3r" path="res://Scenes/title.tscn" id="2_0cgy0"]
+[ext_resource type="Script" path="res://Scenes/Screens/opening_credits.gd" id="1_l6pne"]
+[ext_resource type="PackedScene" uid="uid://beu0trgd4uq3r" path="res://Scenes/Screens/title.tscn" id="2_0cgy0"]
 [ext_resource type="Texture2D" uid="uid://cw6mclcan8cl6" path="res://Assets/Images/mouse.png" id="2_dqy18"]
 [ext_resource type="Theme" uid="uid://bgm3h5nw0ehwi" path="res://Assets/theme.tres" id="4_5dn7g"]
 

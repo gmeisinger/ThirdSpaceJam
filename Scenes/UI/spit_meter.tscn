@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://duwx0i7o8iw5f"]
+[gd_scene load_steps=4 format=3 uid="uid://duwx0i7o8iw5f"]
 
 [ext_resource type="Script" path="res://Scenes/UI/spit_meter.gd" id="1_miwx3"]
+[ext_resource type="Theme" uid="uid://bgm3h5nw0ehwi" path="res://Assets/theme.tres" id="1_mma14"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2kky"]
+bg_color = Color(0.79185, 0.0144483, 0.141844, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="SpitMeter" type="Control" node_paths=PackedStringArray("meter")]
 layout_mode = 3
@@ -9,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_mma14")
 script = ExtResource("1_miwx3")
 meter = NodePath("ProgressBar")
 
@@ -22,6 +32,7 @@ offset_top = -112.0
 offset_right = 224.0
 offset_bottom = -80.0
 grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_l2kky")
 show_percentage = false
 
 [node name="Label" type="Label" parent="."]
@@ -32,6 +43,8 @@ anchor_bottom = 1.0
 offset_left = 32.0
 offset_top = -112.0
 offset_right = 89.0
-offset_bottom = -89.0
+offset_bottom = -81.0
 grow_vertical = 0
+theme_override_font_sizes/font_size = 32
 text = "Spit:"
+vertical_alignment = 1
