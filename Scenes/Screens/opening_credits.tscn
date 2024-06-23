@@ -12,7 +12,6 @@ canvas_modulate = NodePath("CanvasModulate")
 next_scene = ExtResource("2_0cgy0")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Mouse" type="TextureRect" parent="."]
