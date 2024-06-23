@@ -7,7 +7,6 @@ var _zoom: Vector2
 
 var interval: float
 
-const EFFECTS_TOGGLE_PERIOD__BARS: int = 8 * 4
 const BARS_NEEDED_BEFORE_EFFECTS: int = 8 * 4 
 const BEATS_TO_ZOOM: int = 4
 var beat_count: int
@@ -24,12 +23,13 @@ func _ready():
 
 func _on_conductor_quarter_will_pass(beat):
 	if beat >= BARS_NEEDED_BEFORE_EFFECTS:
+		var effects_on_off_beats = 64 if effects_active else 32
 		
-		if not int(beat_count)%EFFECTS_TOGGLE_PERIOD__BARS:
+		if not int(beat_count)%effects_on_off_beats:
 			effects_active = not effects_active
 			
 		if (effects_active):
-			if int(beat_count)%BEATS_TO_ZOOM and (randi_range(0, 1) if int(beat_count)%4 else true):
+			if (randi_range(0, 1) if int(beat_count)%4 else true):
 				camera_effects_started.emit(beat)
 				# Tween Zoom
 				var tween = create_tween()
