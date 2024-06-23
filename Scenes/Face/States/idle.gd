@@ -2,5 +2,6 @@ extends "res://Scenes/StateMachine/base_state.gd"
 
 
 func enter():
-	self.host.anim.stop()
-	self.host.sprite.frame = 0
+	host.anim.stop()
+	host.sprite.frame = 0
+	host.eye.frame = 0
