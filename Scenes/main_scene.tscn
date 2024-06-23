@@ -87,6 +87,7 @@ script = ExtResource("10_htv3v")
 [connection signal="frame_changed" from="Crew" to="Crew" method="_on_frame_changed"]
 [connection signal="quarter_will_pass" from="Conductor" to="." method="_on_conductor_quarter_will_pass"]
 [connection signal="quarter_will_pass" from="Conductor" to="Cake" method="_on_conductor_quarter_will_pass"]
+[connection signal="quarter_will_pass" from="Conductor" to="Crew" method="_on_conductor_quarter_will_pass"]
 
 [editable path="Audio"]
 [editable path="Cake"]
