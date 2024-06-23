@@ -3,10 +3,10 @@ extends Node
 signal score_changed(score : int)
 
 const DIFFICULTY_START : float = 1.0
-const DIFFICULTY_INCREMENT : float = 0.2
+const DIFFICULTY_INCREMENT : float = 0.4
 const AGE_START : int = 8
 const SCORE_BONUS_ON_LEVEL : int = 100
-const BPM_START : float = 80.0
+const BPM_START : float = 100.0
 
 var difficulty : float = DIFFICULTY_START
 var age : int = AGE_START
