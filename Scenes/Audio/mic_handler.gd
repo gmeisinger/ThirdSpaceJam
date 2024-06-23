@@ -15,9 +15,6 @@ func _create_mic_stream():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var devices = AudioServer.get_input_device_list()
-	for device in devices:
-		print(device)
 	input_bus_idx = AudioServer.get_bus_index("Input")
 	call_deferred("_create_mic_stream")
 

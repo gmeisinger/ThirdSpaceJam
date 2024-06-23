@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://beu0trgd4uq3r"]
+[gd_scene load_steps=6 format=3 uid="uid://beu0trgd4uq3r"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/title.gd" id="1_mftg4"]
 [ext_resource type="PackedScene" uid="uid://cvg2fohaju7xd" path="res://Scenes/main_scene.tscn" id="2_mj2fk"]
 [ext_resource type="Texture2D" uid="uid://bfgergyc3q20k" path="res://Assets/Images/bday_cake_simulator.png" id="3_ol2go"]
+[ext_resource type="PackedScene" uid="uid://bw28karhypm3c" path="res://Scenes/UI/options.tscn" id="4_p5stg"]
+[ext_resource type="Theme" uid="uid://bgm3h5nw0ehwi" path="res://Assets/theme.tres" id="5_k48uw"]
 
-[node name="Title" type="CanvasLayer" node_paths=PackedStringArray("canvas_modulate")]
+[node name="Title" type="CanvasLayer" node_paths=PackedStringArray("options_menu", "canvas_modulate")]
 script = ExtResource("1_mftg4")
+options_menu = NodePath("Options")
 canvas_modulate = NodePath("CanvasModulate")
 next_scene = ExtResource("2_mj2fk")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Title" type="TextureRect" parent="."]
@@ -19,3 +23,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ol2go")
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -203.0
+offset_right = 240.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_k48uw")
+
+[node name="Start" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 56.0
+grow_vertical = 2
+text = "START"
+
+[node name="Options" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "OPTIONS"
+
+[node name="Options" parent="." instance=ExtResource("4_p5stg")]
+
+[connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Buttons/Options" to="." method="_on_options_pressed"]
