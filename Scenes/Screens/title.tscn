@@ -59,6 +59,7 @@ grow_vertical = 2
 text = "OPTIONS"
 
 [node name="Options" parent="." instance=ExtResource("4_p5stg")]
+visible = false
 
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_options_pressed"]
