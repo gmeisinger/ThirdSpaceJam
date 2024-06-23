@@ -6,7 +6,6 @@ extends Node
 var state_machine
 var host
 
-
 func init(_state_machine, _host):
 	self.state_machine = _state_machine
 	self.host = _host

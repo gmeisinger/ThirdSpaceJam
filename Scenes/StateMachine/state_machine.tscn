@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cid2cis6wixkg"]
 
-[ext_resource type="Script" path="res://Scenes/Objects/StateMachine/state_machine.gd" id="1_plngs"]
+[ext_resource type="Script" path="res://Scenes/StateMachine/state_machine.gd" id="1_yen5r"]
 
 [node name="StateMachine" type="Node"]
-script = ExtResource("1_plngs")
+script = ExtResource("1_yen5r")

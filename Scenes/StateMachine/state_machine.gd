@@ -1,3 +1,4 @@
+class_name StateMachine
 extends Node
 
 signal changing_state
