@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfplb42segbeb"]
+[gd_scene load_steps=19 format=3 uid="uid://bfplb42segbeb"]
 
 [ext_resource type="Texture2D" uid="uid://kv1yvamu5vcl" path="res://Assets/Images/face-sheet.png" id="2_c86sf"]
 [ext_resource type="Script" path="res://Scenes/Face/face.gd" id="2_hgcg3"]
@@ -7,15 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://mhh8gkqooecs" path="res://Assets/Images/arms.png" id="4_boa1v"]
 [ext_resource type="PackedScene" uid="uid://cid2cis6wixkg" path="res://Scenes/StateMachine/state_machine.tscn" id="4_dgjqc"]
 [ext_resource type="Script" path="res://Scenes/Face/States/idle.gd" id="5_bfvxj"]
+[ext_resource type="Texture2D" uid="uid://cinp7i4j42d6u" path="res://Assets/Images/wind.png" id="5_ie3ur"]
 [ext_resource type="Script" path="res://Scenes/Face/States/blowing.gd" id="6_bwipj"]
 [ext_resource type="Script" path="res://Scenes/Face/States/spitting.gd" id="7_pnme8"]
 [ext_resource type="Script" path="res://Scenes/Face/States/tired.gd" id="8_avjfk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ngksh"]
 size = Vector2(34, 156)
-
-[sub_resource type="Gradient" id="Gradient_xeifr"]
-colors = PackedColorArray(0.25332, 0.473895, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k6or2"]
 particle_flag_disable_z = true
@@ -30,6 +28,27 @@ turbulence_noise_speed = Vector3(1, 1, 2.08165e-12)
 collision_mode = 1
 collision_friction = 0.4
 collision_bounce = 0.0
+
+[sub_resource type="Gradient" id="Gradient_oy8k7"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tqm8a"]
+gradient = SubResource("Gradient_oy8k7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_itbht"]
+lifetime_randomness = 0.35
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+direction = Vector3(2.08165e-12, 2, 2.08165e-12)
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+gravity = Vector3(2.08165e-12, 200, 2.08165e-12)
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_tqm8a")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(1, 1, 2.08165e-12)
 
 [sub_resource type="Animation" id="Animation_uh0j0"]
 resource_name = "tired"
@@ -65,10 +84,11 @@ _data = {
 "tired": SubResource("Animation_uh0j0")
 }
 
-[node name="Face" type="Node2D" node_paths=PackedStringArray("blow_zone", "spit_emitter", "anim", "state_machine", "sprite", "eye", "hand")]
+[node name="Face" type="Node2D" node_paths=PackedStringArray("blow_zone", "spit_emitter", "wind_emitter", "anim", "state_machine", "sprite", "eye", "hand")]
 script = ExtResource("2_hgcg3")
 blow_zone = NodePath("BlowZone")
 spit_emitter = NodePath("Spit")
+wind_emitter = NodePath("Wind")
 anim = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
 sprite = NodePath("Sprite")
@@ -103,25 +123,6 @@ position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_ngksh")
 debug_color = Color(0, 0.6, 0.701961, 0.686275)
 
-[node name="Wind" type="CPUParticles2D" parent="."]
-position = Vector2(0, -92)
-emitting = false
-emission_shape = 3
-emission_rect_extents = Vector2(8, 1)
-direction = Vector2(2.08165e-12, 1)
-gravity = Vector2(2.08165e-12, 500)
-initial_velocity_min = 40.0
-initial_velocity_max = 40.0
-angular_velocity_min = 60.0
-angular_velocity_max = 120.0
-radial_accel_min = -100.0
-radial_accel_max = 100.0
-angle_min = -30.0
-angle_max = 30.0
-scale_amount_min = 8.0
-scale_amount_max = 8.0
-color_ramp = SubResource("Gradient_xeifr")
-
 [node name="Spit" type="GPUParticles2D" parent="."]
 position = Vector2(2.08165e-12, -92)
 amount = 48
@@ -130,6 +131,19 @@ texture = ExtResource("3_4qgkh")
 lifetime = 3.0
 preprocess = 0.2
 speed_scale = 1.5
+
+[node name="Wind" type="GPUParticles2D" parent="."]
+position = Vector2(2.08165e-12, -92)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_itbht")
+texture = ExtResource("5_ie3ur")
+lifetime = 3.0
+preprocess = 0.2
+speed_scale = 1.5
+trail_enabled = true
+trail_lifetime = 0.5
+trail_sections = 2
+trail_section_subdivisions = 1
 
 [node name="StateMachine" parent="." instance=ExtResource("4_dgjqc")]
 

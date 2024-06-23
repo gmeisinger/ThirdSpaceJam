@@ -3,6 +3,7 @@ extends Node2D
 
 @export var blow_zone : Area2D
 @export var spit_emitter : GPUParticles2D
+@export var wind_emitter : GPUParticles2D
 @export var anim : AnimationPlayer
 @export var state_machine : StateMachine
 @export var sprite : Sprite2D
@@ -33,6 +34,7 @@ func move_to(new_x : int, time : float):
 	tween.tween_property(self, "position:x", new_x, time)
 
 func blow(_blow : bool):
+	wind_emitter.emitting = _blow
 	if blowing != _blow:
 		blowing = _blow
 		blow_zone.monitorable = blowing
