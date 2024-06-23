@@ -19,8 +19,11 @@ var music_bus_idx: int
 
 var stream_player: AudioStreamPlayer
 var pitch_shift_effect: AudioEffectPitchShift
+var amplify_effect: AudioEffectAmplify
 var music_streams: Array[MusicFile]
 var current_music: MusicFile
+
+signal music_started()
 
 const music_files = [
 	{
@@ -72,11 +75,19 @@ func _setup_stream_player():
 	get_parent().add_child(stream_player)
 	music_bus_idx = AudioServer.get_bus_index(MUSIC_BUS)
 	pitch_shift_effect = AudioServer.get_bus_effect(music_bus_idx, 0)
+	amplify_effect = AudioServer.get_bus_effect(music_bus_idx, 1)
 	_set_pitch_effect()
 	stream_player.play()
+	music_started.emit()
+	
 
 func _ready():
 	call_deferred("_setup_stream_player")
 	
 func _process(_delta):
 	pass
+
+
+func _on_spit_meter_gameover():
+	var tween = create_tween()
+	tween.tween_property(amplify_effect, "volume_db", linear_to_db(0.0), 1.0)

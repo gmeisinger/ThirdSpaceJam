@@ -7,12 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://bxy15dislkum4" path="res://Scenes/Audio/audio.tscn" id="2_ouyca"]
 [ext_resource type="Texture2D" uid="uid://ba66v4ip3qkbd" path="res://Assets/Images/Chuck_E_Cheese.png" id="2_xa505"]
 [ext_resource type="PackedScene" uid="uid://duwx0i7o8iw5f" path="res://Scenes/UI/spit_meter.tscn" id="3_4gitc"]
-[ext_resource type="PackedScene" uid="uid://ee2f1r5h60eg" path="res://Scenes/Screens/next_level.tscn" id="3_ry3ly"]
+[ext_resource type="PackedScene" path="res://Scenes/Screens/next_level.tscn" id="3_ry3ly"]
 [ext_resource type="Script" path="res://Scenes/Audio/spit_player.gd" id="3_wtppx"]
-[ext_resource type="PackedScene" uid="uid://bve6nj4e75rj7" path="res://Scenes/UI/score_card.tscn" id="4_1eonn"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/score_card.tscn" id="4_1eonn"]
 [ext_resource type="PackedScene" uid="uid://odrkjdacyl5o" path="res://Scenes/UI/breath_meter.tscn" id="4_2vueb"]
-[ext_resource type="PackedScene" uid="uid://bw28karhypm3c" path="res://Scenes/UI/options.tscn" id="7_ts2d5"]
-[ext_resource type="Texture2D" uid="uid://oevkonaivcqe" path="res://Assets/Images/party_people.png" id="8_syt5y"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/options.tscn" id="7_ts2d5"]
+[ext_resource type="Texture2D" uid="uid://c72ex3j0astbl" path="res://Assets/Images/party_people.png" id="8_syt5y"]
+[ext_resource type="Script" path="res://Scenes/Camera.gd" id="8_ysv7f"]
 [ext_resource type="Script" path="res://Scenes/Crew.gd" id="9_f0nd8"]
 [ext_resource type="Script" path="res://Scenes/Audio/conductor.gd" id="10_htv3v"]
 [ext_resource type="Script" path="res://Scenes/Audio/music.gd" id="11_qt2cl"]
@@ -21,7 +22,7 @@
 [node name="Scene" type="Node2D" node_paths=PackedStringArray("cake", "camera", "face", "crew", "conductor", "canvas_modulate")]
 script = ExtResource("1_36osn")
 cake = NodePath("Cake")
-camera = NodePath("Camera")
+camera = NodePath("Node2D/Camera")
 face = NodePath("Face")
 crew = NodePath("Crew")
 conductor = NodePath("Conductor")
@@ -45,10 +46,14 @@ flash_color = Color(1, 0, 0, 1)
 [node name="Options" parent="UI" instance=ExtResource("7_ts2d5")]
 visible = false
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(320, 2.08165e-12)
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="Background" type="Sprite2D" parent="Camera"]
+[node name="Camera" type="Camera2D" parent="Node2D" node_paths=PackedStringArray("eye")]
+position = Vector2(320, 2.08165e-12)
+script = ExtResource("8_ysv7f")
+eye = NodePath("../../Face/Sprite/Eye")
+
+[node name="Background" type="Sprite2D" parent="Node2D/Camera"]
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_xa505")
 
@@ -79,8 +84,12 @@ script = ExtResource("9_f0nd8")
 script = ExtResource("10_htv3v")
 
 [connection signal="gameover" from="UI/SpitMeter" to="." method="_on_gameover"]
+[connection signal="gameover" from="UI/SpitMeter" to="Audio/Music" method="_on_spit_meter_gameover"]
+[connection signal="camera_effects_started" from="Node2D/Camera" to="Crew" method="_on_camera_camera_effects_started"]
 [connection signal="blow_power" from="Audio/Mic Handler" to="Face" method="_on_mic_handler_blow_power"]
 [connection signal="spitting" from="Audio/Spit Player" to="Audio/Wind Generator" method="_on_spit_player_spitting"]
+[connection signal="music_started" from="Audio/Music" to="Crew" method="_on_music_music_started"]
+[connection signal="music_started" from="Audio/Music" to="Conductor" method="_on_music_music_started"]
 [connection signal="all_candles_out" from="Cake" to="." method="_on_all_candles_out"]
 [connection signal="breath_left" from="Face" to="UI/BreathMeter" method="_on_breath_changed"]
 [connection signal="breath_left" from="Face" to="Audio/Spit Player" method="_on_face_breath_left"]
@@ -90,8 +99,10 @@ script = ExtResource("10_htv3v")
 [connection signal="frame_changed" from="Crew" to="Crew" method="_on_frame_changed"]
 [connection signal="quarter_will_pass" from="Conductor" to="." method="_on_conductor_quarter_will_pass"]
 [connection signal="quarter_will_pass" from="Conductor" to="CanvasModulate" method="_on_flash"]
+[connection signal="quarter_will_pass" from="Conductor" to="Node2D/Camera" method="_on_conductor_quarter_will_pass"]
 [connection signal="quarter_will_pass" from="Conductor" to="Cake" method="_on_conductor_quarter_will_pass"]
 [connection signal="quarter_will_pass" from="Conductor" to="Crew" method="_on_conductor_quarter_will_pass"]
 
 [editable path="Audio"]
 [editable path="Cake"]
+[editable path="Face"]
