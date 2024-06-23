@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://31vkbsk58qvn"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://31vkbsk58qvn"]
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_bh3wk"]
 resource_name = "LowPassFilter"
@@ -17,6 +17,9 @@ wet = 0.1
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_h7mtc"]
 resource_name = "HighPassFilter"
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_0ox7l"]
+resource_name = "PitchShift"
 
 [resource]
 bus/1/name = &"Wind Noise"
@@ -51,3 +54,11 @@ bus/4/effect/0/effect = SubResource("AudioEffectReverb_ujlti")
 bus/4/effect/0/enabled = true
 bus/4/effect/1/effect = SubResource("AudioEffectHighPassFilter_h7mtc")
 bus/4/effect/1/enabled = true
+bus/5/name = &"Music"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"Master"
+bus/5/effect/0/effect = SubResource("AudioEffectPitchShift_0ox7l")
+bus/5/effect/0/enabled = true

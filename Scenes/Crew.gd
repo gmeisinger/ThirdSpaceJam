@@ -14,3 +14,10 @@ func _process(delta):
 func _on_frame_changed():
 	grossed_out = true if frame == 1 else false
 	ew_timer = 0.0
+
+
+func _on_conductor_quarter_will_pass(beat):
+	var interval = 60 / DifficultyManager.bpm
+	var tween = create_tween()
+	tween.tween_property(self, "position:y", position.y + 30, interval / 2).set_trans(Tween.TRANS_SINE)
+	tween.chain().tween_property(self, "position:y", position.y, interval / 2).set_trans(Tween.TRANS_SINE)

@@ -5,7 +5,6 @@ extends Node
 const WAV_FILES_COUNT: int = 17
 
 const SPITS_BUS: String = "Spits"
-var spits_bux_idx: int
 
 var stream_player: AudioStreamPlayer
 var wav_loader: AudioLoader
