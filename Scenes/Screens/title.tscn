@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Screens/title.gd" id="1_mftg4"]
 [ext_resource type="PackedScene" uid="uid://cvg2fohaju7xd" path="res://Scenes/main_scene.tscn" id="2_mj2fk"]
-[ext_resource type="Texture2D" uid="uid://bp8g5wsfxjrtf" path="res://Assets/Images/title.png" id="3_386l3"]
+[ext_resource type="Texture2D" uid="uid://bfgergyc3q20k" path="res://Assets/Images/bday_cake_simulator.png" id="3_ol2go"]
 
 [node name="Title" type="CanvasLayer" node_paths=PackedStringArray("canvas_modulate")]
 script = ExtResource("1_mftg4")
@@ -18,4 +18,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_386l3")
+texture = ExtResource("3_ol2go")

@@ -16,10 +16,11 @@ var new_candle_timer = 0
 var beats_to_move = 2
 
 func _ready():
+	conductor.bpm = DifficultyManager.bpm
+	cake.num_candles = DifficultyManager.age
 	face.move_to(cake.get_random_candle_x(), beats_to_move * seconds_per_beat)
 
 func _process(delta):
-	#new_candle_timer += delta
 	if new_candle_timer >= NEW_CANDLE_DELAY:
 		new_candle_timer = 0
 		face.move_to(cake.get_random_candle_x(), beats_to_move * seconds_per_beat)
@@ -32,7 +33,6 @@ func _on_face_is_spitting(_spitting):
 
 func _on_conductor_quarter_will_pass(beat):
 	new_candle_timer += 1
-	print(beat)
 
 func goto_gameover():
 	get_tree().change_scene_to_packed(gameover_scene)
@@ -41,12 +41,14 @@ func goto_level_complete():
 	get_tree().change_scene_to_packed(congrats_scene)
 
 func _on_gameover():
+	DifficultyManager.gameover()
 	var tween = get_tree().create_tween()
 	tween.connect("finished", goto_gameover)
 	tween.tween_property(canvas_modulate, "color", Color(0,0,0), 1.0)
 
 
 func _on_all_candles_out():
+	DifficultyManager.level_complete()
 	var tween = get_tree().create_tween()
 	tween.connect("finished", goto_level_complete)
 	tween.tween_property(canvas_modulate, "color", Color(0,0,0), 1.0)

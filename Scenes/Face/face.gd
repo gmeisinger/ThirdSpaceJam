@@ -5,7 +5,6 @@ extends Node2D
 @export var spit_emitter : GPUParticles2D
 
 @onready var start_x = position.x
-@onready var tween = create_tween()
 @onready var sprite = get_node("Sprite")
 
 signal is_spitting(_spitting : bool)
@@ -16,6 +15,8 @@ var blow_threshold = .1
 var spitting = false
 var blowing = true
 
+var tween : Tween
+
 var breath_amount : float = 100
 const MIN_BREATH = 10.0
 const BREATH_MAX = 100.0
@@ -23,7 +24,9 @@ const BREATH_LOSS_RATE = 50
 const BREATH_GAIN_RATE = 25
 
 func move_to(new_x : int, time : float):
-	tween = get_tree().create_tween()
+	if tween:
+		tween.kill()
+	tween = create_tween()
 	tween.tween_property(self, "position:x", new_x, time)
 
 func blow(_blow : bool):

@@ -22,6 +22,10 @@ buses/default_bus_layout="res://Scenes/Audio/default_bus_layout.tres"
 driver/enable_input=true
 driver/mix_rate=48000
 
+[autoload]
+
+DifficultyManager="*res://Autoload/difficulty_manager.tscn"
+
 [display]
 
 window/size/viewport_width=1280

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvg2fohaju7xd"]
+[gd_scene load_steps=15 format=3 uid="uid://cvg2fohaju7xd"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_36osn"]
 [ext_resource type="PackedScene" uid="uid://d3uvj7pvlu8l7" path="res://Scenes/Cake/cake.tscn" id="1_h60mr"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://duwx0i7o8iw5f" path="res://Scenes/UI/spit_meter.tscn" id="3_4gitc"]
 [ext_resource type="PackedScene" uid="uid://ee2f1r5h60eg" path="res://Scenes/Screens/next_level.tscn" id="3_ry3ly"]
 [ext_resource type="Script" path="res://Scenes/Audio/spit_player.gd" id="3_wtppx"]
+[ext_resource type="PackedScene" uid="uid://bve6nj4e75rj7" path="res://Scenes/UI/score_card.tscn" id="4_1eonn"]
 [ext_resource type="PackedScene" uid="uid://odrkjdacyl5o" path="res://Scenes/UI/breath_meter.tscn" id="4_2vueb"]
 [ext_resource type="Texture2D" uid="uid://oevkonaivcqe" path="res://Assets/Images/party_people.png" id="8_syt5y"]
 [ext_resource type="Script" path="res://Scenes/Crew.gd" id="9_f0nd8"]
@@ -28,6 +29,8 @@ congrats_scene = ExtResource("3_ry3ly")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreCard" parent="UI" instance=ExtResource("4_1eonn")]
 
 [node name="BreathMeter" parent="UI" instance=ExtResource("4_2vueb")]
 
