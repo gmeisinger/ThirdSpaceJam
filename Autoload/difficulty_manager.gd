@@ -5,7 +5,7 @@ signal score_changed(score : int)
 const DIFFICULTY_START : float = 1.0
 const DIFFICULTY_INCREMENT : float = 0.2
 const AGE_START : int = 8
-const SCORE_BONUS_ON_LEVEL : int = 1000
+const SCORE_BONUS_ON_LEVEL : int = 100
 const BPM_START : float = 80.0
 
 var difficulty : float = DIFFICULTY_START
@@ -23,7 +23,7 @@ func gameover():
 	score = 0
 
 func level_complete():
-	add_score(SCORE_BONUS_ON_LEVEL)
+	add_score(SCORE_BONUS_ON_LEVEL * age)
 	difficulty += DIFFICULTY_INCREMENT
 	age += 1
 	bpm = BPM_START * difficulty

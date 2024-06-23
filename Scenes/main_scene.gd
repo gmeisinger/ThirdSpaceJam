@@ -19,6 +19,8 @@ func _ready():
 	conductor.bpm = DifficultyManager.bpm
 	cake.num_candles = DifficultyManager.age
 	face.move_to(cake.get_random_candle_x(), beats_to_move * seconds_per_beat)
+	var tween = create_tween()
+	tween.tween_property(canvas_modulate, "color", Color(1,1,1,), 1.0)
 
 func _process(delta):
 	if new_candle_timer >= NEW_CANDLE_DELAY:
