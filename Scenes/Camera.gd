@@ -7,7 +7,7 @@ var _zoom: Vector2
 
 var interval: float
 
-const BARS_NEEDED_BEFORE_EFFECTS: int = 8 * 4 
+const BARS_NEEDED_BEFORE_EFFECTS: int = 8 * 4 + 8
 const BEATS_TO_ZOOM: int = 4
 var beat_count: int
 var effects_active: bool
@@ -23,7 +23,7 @@ func _ready():
 
 func _on_conductor_quarter_will_pass(beat):
 	if beat >= BARS_NEEDED_BEFORE_EFFECTS:
-		var effects_on_off_beats = 64 if effects_active else 32
+		var effects_on_off_beats = 64
 		
 		if not int(beat_count)%effects_on_off_beats:
 			effects_active = not effects_active
