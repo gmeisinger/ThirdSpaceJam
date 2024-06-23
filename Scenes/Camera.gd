@@ -13,7 +13,7 @@ const BEATS_TO_ZOOM: int = 4
 var beat_count: int
 var effects_active: bool
 
-signal camera_effects_started()
+signal camera_effects_started(beat : VisualShaderNodeFloatConstant)
 
 func _ready():
 	# Cache starting parameters
@@ -24,13 +24,13 @@ func _ready():
 
 func _on_conductor_quarter_will_pass(beat):
 	if beat >= BARS_NEEDED_BEFORE_EFFECTS:
-		camera_effects_started.emit()
 		
 		if not int(beat_count)%EFFECTS_TOGGLE_PERIOD__BARS:
 			effects_active = not effects_active
 			
 		if (effects_active):
 			if int(beat_count)%BEATS_TO_ZOOM and (randi_range(0, 1) if int(beat_count)%4 else true):
+				camera_effects_started.emit(beat)
 				# Tween Zoom
 				var tween = create_tween()
 				var zoom_amt = randf_range(1.2, 1.3) if not int(beat_count)%16 else randf_range(1.0, 1.1)
