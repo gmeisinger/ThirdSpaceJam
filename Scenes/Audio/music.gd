@@ -1,14 +1,14 @@
 extends Node
 
-class WAVFile:
+class MusicFile:
 	var _loader: AudioLoader
-	var audio_stream: AudioStreamWAV
+	var audio_stream: AudioStreamOggVorbis
 	var BPM: int
 	
 	func _init(wav_file_path, bpm):
 		_loader = AudioLoader.new()
-		audio_stream = _loader.loadfile(wav_file_path)
-		audio_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		audio_stream = ResourceLoader.load(wav_file_path)
+		audio_stream.loop = true
 		BPM = bpm
 		
 
@@ -19,24 +19,24 @@ var music_bus_idx: int
 
 var stream_player: AudioStreamPlayer
 var pitch_shift_effect: AudioEffectPitchShift
-var music_streams: Array[WAVFile]
-var current_music: WAVFile
+var music_streams: Array[MusicFile]
+var current_music: MusicFile
 
-const wav_files = [
+const music_files = [
 	{
-		"file": "res://Scenes/Audio/Music/HBD-1.wav",
+		"file": "res://Scenes/Audio/Music/HBD-1.ogg",
 		"bpm": 140
 	},
 	{
-		"file": "res://Scenes/Audio/Music/HBD-2.wav",
+		"file": "res://Scenes/Audio/Music/HBD-2.ogg",
 		"bpm": 130
 	},
 	{
-		"file": "res://Scenes/Audio/Music/HBD-3.wav",
+		"file": "res://Scenes/Audio/Music/HBD-3.ogg",
 		"bpm": 128
 	},
 	{
-		"file": "res://Scenes/Audio/Music/HBD-4.wav",
+		"file": "res://Scenes/Audio/Music/HBD-4.ogg",
 		"bpm": 138
 	}
 ]
@@ -48,11 +48,11 @@ func _set_pitch_effect():
 		else -(stream_player.pitch_scale - 1.0) \
 	)
 func _select_new_music():
-	var new_music: WAVFile
-	if wav_files.size() > 1:
+	var new_music: MusicFile
+	if music_files.size() > 1:
 		# Loop until we get a new song
 		while true:
-			new_music = music_streams[randi_range(0, wav_files.size() - 1)]
+			new_music = music_streams[randi_range(0, music_files.size() - 1)]
 			if current_music != new_music:
 				break
 		current_music = new_music
@@ -61,8 +61,8 @@ func _select_new_music():
 	
 
 func _setup_stream_player():
-	for i in wav_files.size():
-		music_streams.append(WAVFile.new(wav_files[i].file, wav_files[i].bpm))
+	for i in music_files.size():
+		music_streams.append(MusicFile.new(music_files[i].file, music_files[i].bpm))
 	_select_new_music()
 	
 	stream_player = AudioStreamPlayer.new()
