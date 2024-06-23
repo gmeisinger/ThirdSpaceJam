@@ -7,6 +7,7 @@ extends Node2D
 @export var state_machine : StateMachine
 @export var sprite : Sprite2D
 @export var eye : Sprite2D
+@export var hand : Sprite2D
 @onready var start_x = position.x
 
 signal is_spitting(_spitting : bool)
