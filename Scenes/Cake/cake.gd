@@ -14,8 +14,8 @@ var candle_scene = preload("res://Scenes/Cake/candle.tscn")
 var lit = []
 var unlit = []
 
-const RELIGHT_MIN = 8
-const RELIGHT_MAX = 16
+const RELIGHT_MIN = 20
+const RELIGHT_MAX = 35
 var relight_time = RELIGHT_MAX
 var relight_timer = 0
 
@@ -43,6 +43,8 @@ func _on_candle_relit(candle):
 	lit.append(candle)
 
 func get_random_candle_x():
+	if len(lit) == 0:
+		return 0
 	var next : Candle = lit[randi_range(0, len(lit)-1)]
 	var next_x = next.global_position.x
 	return next_x

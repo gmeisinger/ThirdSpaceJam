@@ -37,7 +37,16 @@ func _on_conductor_quarter_will_pass(beat):
 func goto_gameover():
 	get_tree().change_scene_to_packed(gameover_scene)
 
+func goto_level_complete():
+	get_tree().change_scene_to_packed(congrats_scene)
+
 func _on_gameover():
 	var tween = get_tree().create_tween()
 	tween.connect("finished", goto_gameover)
+	tween.tween_property(canvas_modulate, "color", Color(0,0,0), 1.0)
+
+
+func _on_all_candles_out():
+	var tween = get_tree().create_tween()
+	tween.connect("finished", goto_level_complete)
 	tween.tween_property(canvas_modulate, "color", Color(0,0,0), 1.0)

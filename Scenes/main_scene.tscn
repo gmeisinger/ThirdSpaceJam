@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvg2fohaju7xd"]
+[gd_scene load_steps=14 format=3 uid="uid://cvg2fohaju7xd"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_36osn"]
 [ext_resource type="PackedScene" uid="uid://d3uvj7pvlu8l7" path="res://Scenes/Cake/cake.tscn" id="1_h60mr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bxy15dislkum4" path="res://Scenes/Audio/audio.tscn" id="2_ouyca"]
 [ext_resource type="Texture2D" uid="uid://ba66v4ip3qkbd" path="res://Assets/Images/Chuck_E_Cheese.png" id="2_xa505"]
 [ext_resource type="PackedScene" uid="uid://duwx0i7o8iw5f" path="res://Scenes/UI/spit_meter.tscn" id="3_4gitc"]
+[ext_resource type="PackedScene" uid="uid://ee2f1r5h60eg" path="res://Scenes/Screens/next_level.tscn" id="3_ry3ly"]
 [ext_resource type="Script" path="res://Scenes/Audio/spit_player.gd" id="3_wtppx"]
 [ext_resource type="PackedScene" uid="uid://odrkjdacyl5o" path="res://Scenes/UI/breath_meter.tscn" id="4_2vueb"]
 [ext_resource type="Texture2D" uid="uid://oevkonaivcqe" path="res://Assets/Images/party_people.png" id="8_syt5y"]
@@ -22,6 +23,7 @@ crew = NodePath("Crew")
 conductor = NodePath("Conductor")
 canvas_modulate = NodePath("CanvasModulate")
 gameover_scene = ExtResource("2_cktp1")
+congrats_scene = ExtResource("3_ry3ly")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -64,6 +66,7 @@ script = ExtResource("10_htv3v")
 [connection signal="gameover" from="UI/SpitMeter" to="." method="_on_gameover"]
 [connection signal="blow_power" from="Audio/Mic Handler" to="Face" method="_on_mic_handler_blow_power"]
 [connection signal="spitting" from="Audio/Spit Player" to="Audio/Wind Generator" method="_on_spit_player_spitting"]
+[connection signal="all_candles_out" from="Cake" to="." method="_on_all_candles_out"]
 [connection signal="breath_left" from="Face" to="UI/BreathMeter" method="_on_breath_changed"]
 [connection signal="breath_left" from="Face" to="Audio/Spit Player" method="_on_face_breath_left"]
 [connection signal="is_spitting" from="Face" to="." method="_on_face_is_spitting"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ee2f1r5h60eg"]
+
+[ext_resource type="Script" path="res://Scenes/Screens/gameover.gd" id="1_x8u7s"]
+[ext_resource type="Texture2D" uid="uid://gqobvusu6j5s" path="res://Assets/Images/good_job.png" id="2_8q3cl"]
+
+[node name="NextLevel" type="CanvasLayer" node_paths=PackedStringArray("canvas_modulate")]
+script = ExtResource("1_x8u7s")
+canvas_modulate = NodePath("CanvasModulate")
+next_scene = "res://Scenes/main_scene.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8q3cl")
