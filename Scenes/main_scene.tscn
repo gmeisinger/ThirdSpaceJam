@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bxy15dislkum4" path="res://Scenes/Audio/audio.tscn" id="2_ouyca"]
 [ext_resource type="PackedScene" uid="uid://yewxky23irg5" path="res://Scenes/Screens/gameover.tscn" id="2_r7gsn"]
 [ext_resource type="PackedScene" uid="uid://duwx0i7o8iw5f" path="res://Scenes/UI/spit_meter.tscn" id="3_4gitc"]
+[ext_resource type="Texture2D" uid="uid://ba66v4ip3qkbd" path="res://Assets/Images/Chuck_E_Cheese.png" id="2_xa505"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/spit_meter.tscn" id="3_4gitc"]
 [ext_resource type="Script" path="res://Scenes/Audio/spit_player.gd" id="3_wtppx"]
 [ext_resource type="PackedScene" uid="uid://odrkjdacyl5o" path="res://Scenes/UI/breath_meter.tscn" id="4_2vueb"]
-[ext_resource type="Texture2D" uid="uid://oevkonaivcqe" path="res://Assets/Images/party_people.png" id="8_syt5y"]
+[ext_resource type="Texture2D" uid="uid://c72ex3j0astbl" path="res://Assets/Images/party_people.png" id="8_syt5y"]
 [ext_resource type="Script" path="res://Scenes/Crew.gd" id="9_f0nd8"]
 [ext_resource type="Script" path="res://Scenes/Audio/conductor.gd" id="10_htv3v"]
 
@@ -30,6 +32,10 @@ gameover_scene = ExtResource("2_r7gsn")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(320, 2.08165e-12)
+
+[node name="Background" type="Sprite2D" parent="Camera"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_xa505")
 
 [node name="Audio" parent="." instance=ExtResource("2_ouyca")]
 position = Vector2(320, 2.08165e-12)
