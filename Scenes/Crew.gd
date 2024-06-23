@@ -27,5 +27,5 @@ func _on_conductor_quarter_will_pass(beat):
 	tween.chain().tween_property(self, "position:y", position.y, interval / 2).set_trans(Tween.TRANS_SINE)
 
 
-func _on_camera_camera_effects_started():
+func _on_camera_camera_effects_started(_beat):
 	_camera_effects_started = true
