@@ -46,7 +46,7 @@ func _on_mic_handler_blow_power(power):
 			spit(true)
 		else:
 			spit(false)
-	else:
+	elif power < blow_threshold:
 		blow(false)
 		spit(false)
 

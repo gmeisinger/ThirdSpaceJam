@@ -8,6 +8,7 @@ var spits_bux_idx: int
 var stream_player: AudioStreamPlayer
 var wav_loader: AudioLoader
 var wav_streams: Array[AudioStreamWAV]
+var out_of_breath_stream: AudioStreamWAV
 
 # signals
 var do_spit: bool
@@ -15,6 +16,8 @@ signal spitting(is_spitting: bool)
 
 func _setup_stream_player():
 	wav_loader = AudioLoader.new()
+	out_of_breath_stream = wav_loader.loadfile("res://Scenes/Audio/Out Of Breath/out-of-breath-1.wav")
+	out_of_breath_stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
 	for i in WAV_FILES_COUNT:
 		var wav = wav_loader.loadfile("res://Scenes/Audio/spit_samples/Spit-%s.wav" % str(i+1))
 		var wav_size = wav.data.size()
@@ -52,3 +55,10 @@ func _on_face_is_spitting(_spitting):
 			else AudioStreamWAV.LOOP_DISABLED
 		
 		do_spit = not do_spit
+
+
+func _on_face_breath_left(_breath):
+	if _breath < 0.01:
+		stream_player.stop()
+		stream_player.stream = out_of_breath_stream
+		stream_player.play()
